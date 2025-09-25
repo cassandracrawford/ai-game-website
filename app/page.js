@@ -1,9 +1,18 @@
 "use client";
 
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const [isLarge, setIsLarge] = useState(false);
+
+  useEffect(() => {
+    const checkSize = () => setIsLarge(window.innerWidth >= 768); // md breakpoint
+    checkSize(); // run once on mount
+    window.addEventListener("resize", checkSize);
+    return () => window.removeEventListener("resize", checkSize);
+  }, []);
+
   return (
     <div>
       <div className="relative flex items-center justify-center min-h-screen bg-[#333652] overflow-hidden">
@@ -30,15 +39,21 @@ export default function Home() {
         </div>
       </div>
       <div className="min-h-screen flex justify-center items-center bg-[#333652] ">
-        <motion.h1
-          initial={{ x: -500, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: false, amount: 0.7 }}
-          className="text-6xl md:text-8xl font-bold text-white"
-        >
-          Coming Soon...
-        </motion.h1>
+        {isLarge ? (
+          <motion.h1
+            initial={{ x: -500, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: false, amount: 0.7 }}
+            className="text-6xl md:text-8xl font-bold text-white"
+          >
+            Coming Soon...
+          </motion.h1>
+        ) : (
+          <h1 className="text-4xl md:text-8xl font-bold text-white">
+            Coming Soon...
+          </h1>
+        )}
       </div>
     </div>
   );
