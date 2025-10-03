@@ -9,11 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-spring/parallax": "^10.0.3",
+    "@scenejs/effects": "^1.0.2",
     "framer-motion": "^12.23.22",
     "next": "15.5.4",
+    "qrcode.react": "^4.2.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-scroll-parallax": "^3.4.5"
+    "react-scroll-parallax": "^3.4.5",
+    "scenejs": "^1.10.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
